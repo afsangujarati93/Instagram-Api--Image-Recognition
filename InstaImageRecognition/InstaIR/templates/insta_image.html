@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>InstaIR</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+<style>
+	html *
+	{
+	   font-family: "Segoe UI",Arial,sans-serif !important;";
+	}
+</style>
+<div id="insta_image_div" style = "background-color: #fafafa !important">			
+	<!-- <p hidden id='recent_media'>{{recent_media}}</p> -->
+	<p hidden id='recent_media'>{{recent_media}}</p>
+	<!-- <input name="media_list" value={{recent_media}}> -->
+	<!-- {% load static %}
+	<img src="{% static '1.png' %}" alt="My image"/> -->
+</div>
+
+
+</body>
+<script>
+	var recent_media = document.getElementById('recent_media').innerHTML;
+	
+	recent_media_arr = recent_media.split('~')
+	recent_media_length = recent_media_arr.length
+	//image_name = '1.png'
+	// static_start = '{% static "'
+	// static_end =  '" %}'
+	// image_src = static_start.concat(image_name, static_end)
+ 
+ 	curr_row_div = 0
+ 	var col_div = document.createElement("div");
+   	col_div.setAttribute("class", "row")
+   	col_div.setAttribute("id", "col_row_div_"+curr_row_div)
+   	var element = document.getElementById("insta_image_div");
+   	
+   	element.appendChild(col_div);
+
+	for (i = 0; i < recent_media_length; i++){
+		image_name = recent_media_arr[i]
+
+		if( i != 0 && (i)%3 ==0){			
+			var col_div = document.createElement("div");
+		   	col_div.setAttribute("class", "row")
+		   	col_div.setAttribute("id", "col_row_div_"+i)
+		   	var element = document.getElementById("insta_image_div");
+		   	element.appendChild(col_div);
+		   	curr_row_div = i
+		}
+		
+		var col_div = document.createElement("div");
+	   	col_div.setAttribute("class", "col-md-4")
+	   	col_div.setAttribute("id", "col_div_"+i)
+	   	var element = document.getElementById("col_row_div_" + curr_row_div);
+	   	element.appendChild(col_div);
+
+	   	var col_thumb_div = document.createElement("div");
+	   	col_thumb_div.setAttribute("class", "thumbnail")
+	   	col_thumb_div.setAttribute("id", "col_thumb_div_"+i)
+	   	var element = document.getElementById("col_div_"+i);
+	   	element.appendChild(col_thumb_div);
+
+	   	var col_a_tag = document.createElement("a");
+	   	col_a_tag.setAttribute("href", "object_recognition" + "?image_name=" + image_name)
+	   	col_a_tag.setAttribute("id", "col_a_tag_"+i)
+	   	var element = document.getElementById("col_thumb_div_"+i);
+	   	element.appendChild(col_a_tag);
+
+		var col_img_tag = document.createElement("img");
+		{% load static %}
+	   	col_img_tag.setAttribute("src", "{% get_static_prefix %}" + "Prediction Images/" + image_name)
+	   	col_img_tag.setAttribute("id", "col_img_tag_"+i)	   	
+	   	col_img_tag.setAttribute("style", "max-height:220px")
+	   	var element = document.getElementById("col_a_tag_"+i);
+	   	element.appendChild(col_img_tag);
+	}
+	
+</script>	
+</html>
+

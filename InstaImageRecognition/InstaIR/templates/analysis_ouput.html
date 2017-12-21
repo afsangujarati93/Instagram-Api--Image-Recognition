@@ -1,0 +1,58 @@
+<!-- {% block content %}
+{% endblock %} -->
+
+<!-- <h2>Positive Tweets</h2>
+<h3>Tweet count: {{postweetscount}}</h3>
+<h3>Tweet percent: {{postweetpercent}}</h3>
+{{ postweets|linebreaks }}
+<h2>Negative Tweets</h2>
+<h3>Tweet count: {{negtweetscount}}</h3>
+<h3>Tweet percent: {{negtweetpercent}}</h3>
+{{ negtweets|linebreaks }}
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tweet Analysis</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+	html *
+	{
+	   font-family: "Segoe UI",Arial,sans-serif !important;";
+	}
+</style>
+<div class="jumbotron text-center panel-info" style = "background-color: #de5567 !important;">
+  <h1>Twitter Sentiment Analysis</h1>
+  <h2>@{{username}}</h2>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 panel panel-success">
+      <h2 class = "panel-heading">Positive Tweets</h2>
+      <div class = "panel-body">
+	      <h3>Tweet count: {{postweetscount}}</h3>
+		  <h3>Tweet percent: {{postweetpercent}} %</h3>		  
+		  {{ postweets|linebreaks }}		  		  
+	  </div> 
+    </div>
+    <div class="col-sm-6 panel panel-danger">
+      <h2 class = "panel-heading">Negative Tweets</h2>
+      <div class = "panel-body">
+      	 <h3>Tweet count: {{negtweetscount}}</h3>
+	  	 <h3>Tweet percent: {{negtweetpercent}} %</h3>
+	  	 {{ negtweets|linebreaks }}
+      </div>     
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

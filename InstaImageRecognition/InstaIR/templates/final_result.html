@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>InstaIR</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+	<style>
+		html *
+		{
+		   font-family: "Segoe UI",Arial,sans-serif !important;";
+		}
+	</style>
+	<p hidden id="object_names">{{object_name_list}}</p>
+	<p hidden id="object_prob">{{object_prob_list}}</p>
+	<div class="container" style = "background-color: #fafafa !important">
+		<div class="row justify-content-center">
+			<div class="col-md-4">
+				
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">	
+					{% load static %}			
+					<img src="{% get_static_prefix %}Prediction Images/{{image_name}}" alt="Insta Photo" style="width:100%">
+					<div class="caption">
+						<table class = "table" id="object_details_table">
+							<thead>
+								<tr>
+									<th>
+										Object Name
+									</th>
+									<th>
+										Object Probability
+									</th>
+								</tr>
+							</thead>
+							<tbody id="object_details_tbody">
+								
+							</tbody>
+						</table>
+					
+					</div>				
+				</div>
+			</div>
+			<div class="col-md-4">
+				
+			</div>			
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+	var object_names = document.getElementById('object_names').innerHTML;
+	object_names_arr = object_names.split('~')
+	object_names_length = object_names_arr.length
+
+	var object_prob = document.getElementById('object_prob').innerHTML;
+	object_prob_arr = object_prob.split('~')
+	object_prob_length = object_prob_arr.length
+	
+	for(i=0;i<object_names_length;i++){
+
+		var obj_tr = document.createElement("tr");   	
+	   	obj_tr.setAttribute("id", "obj_tr_"+i)
+	   	var element = document.getElementById("object_details_tbody");
+	   	element.appendChild(obj_tr);
+
+	   	var obj_td_name = document.createElement("td");   	
+	   	obj_td_name.setAttribute("id", "obj_td_name_"+i)
+	   	var element = document.getElementById("obj_tr_"+i);
+	   	element.appendChild(obj_td_name);
+	   	document.getElementById("obj_td_name_"+i).innerHTML = object_names_arr[i]
+
+	   	var obj_td_prob = document.createElement("td");   	
+	   	obj_td_prob.setAttribute("id", "obj_td_prob_"+i)
+	   	var element = document.getElementById("obj_tr_"+i);
+	   	element.appendChild(obj_td_prob);		
+	   	document.getElementById("obj_td_prob_"+i).innerHTML = object_prob_arr[i]
+	}
+
+
+
+</script>

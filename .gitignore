@@ -1,0 +1,9 @@
+*config.json
+*.log
+*.pyc
+__pycache__/
+.*XML
+.spyproject/
+*.csv
+*.txt
+Dataset/
