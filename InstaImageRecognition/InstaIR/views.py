@@ -53,7 +53,7 @@ def object_recognition(request):
 		object_name_list = []
 		object_prob_list = []
 		for object_details in object_details_list:
-			print("Object Name:" + str(object_details.object_name) +"\t :" +  str(object_details.object_prob))
+			# print("Object Name:" + str(object_details.object_name) +"\t :" +  str(object_details.object_prob))
 			object_name_list.append(object_details.object_name)
 			object_prob_list.append(str(object_details.object_prob))        
 		print("\n\n") 
@@ -63,8 +63,7 @@ def object_recognition(request):
 			'image_name' : image_name,
 			'object_name_list' : str_object_names,
 			'object_prob_list' : str_object_probs,
-			})
-		# return HttpResponse("File Name:" + image_name + "     object name and prob:" + str_object_names + "  |prob: " + str_object_probs)
+			})		
 	except Exception as Ex:
 		logger.error("Exception occurred in the "+object_recognition+" method| Exception:" + str(Ex))
 		return render(request, 'index.html')

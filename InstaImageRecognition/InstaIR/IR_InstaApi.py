@@ -12,16 +12,12 @@ class InstaApi:
 	global config_json
 	config_json = json.loads(cofig_file)
 
-	def save_image(image_url):
+	def save_image(image_url, image_predic_folder):
 		METHOD_NAME = 'save_image'
-		try:
-			dir_path = os.path.dirname(os.path.realpath(__file__))
-			image_predic_path = dir_path + r'\static\Prediction Images'
+		try:			
 			image_name = image_url.split('/')[-1]
-			image_predic_path += r'\\' + image_name
-			logger.info('Saving Image %s', image_predic_path)
-			# image_predic_folder = str(image_predic_path.rsplit('\\', 1)[1])
-			# print("Saving to:" + image_name)
+			image_predic_path = image_predic_folder + r'\\' + image_name
+			# logger.info('Saving Image %s', image_predic_path)			
 			urllib.request.urlretrieve(image_url, image_predic_path)  			
 			return image_name     
 		except Exception as Ex:
@@ -53,12 +49,23 @@ class InstaApi:
 
 			api_response = InstaApi.insta_getcall(str_url = str_url, a = user_id, b = access_token)
 			image_urls_list = []
+
+			#checking if directory has files and if yes, deleting all the files before saving new ones
+			dir_path = os.path.dirname(os.path.realpath(__file__))
+			image_predic_folder = dir_path + r'\static\Prediction Images'
+			if os.listdir(image_predic_folder):
+				print("Directory has files")
+				for image_file in os.listdir(image_predic_folder):
+					image_file_path = os.path.join(image_predic_folder, image_file)										
+					os.remove(image_file_path)
+				logger.info("Deleting file completed from directory:" + image_predic_folder)
+			else:
+				print("No files in directory")
+
 			for data in api_response['data']:
-				image_url = data['images']['standard_resolution']['url']
-				# logger.debug('image_url:' + str(image_url))
-				# print('image_url:' + s-tr(image_url))
-				image_predict_folder = InstaApi.save_image(image_url)
-				image_urls_list.append(image_predict_folder)
+				image_url = data['images']['standard_resolution']['url']				
+				image_name = InstaApi.save_image(image_url, image_predic_folder)
+				image_urls_list.append(image_name)
 
 			print('Saving images complete')
 			return image_urls_list
