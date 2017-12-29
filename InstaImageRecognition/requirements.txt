@@ -1,5 +1,5 @@
 Django==2.0
 numpy==1.13.3
 tensorflow
-six=
+six
 gunicorn==19.3.0
