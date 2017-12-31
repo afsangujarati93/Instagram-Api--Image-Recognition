@@ -16,8 +16,8 @@ class InstaApi:
 		METHOD_NAME = 'save_image'
 		try:			
 			image_name = image_url.split('/')[-1]
-			image_predic_path = image_predic_folder + r'\\' + image_name
-			# logger.info('Saving Image %s', image_predic_path)			
+			image_predic_path = image_predic_folder + r'/' + image_name
+			logger.info('Saving Image %s', image_predic_path)			
 			urllib.request.urlretrieve(image_url, image_predic_path)  			
 			return image_name     
 		except Exception as Ex:
@@ -52,7 +52,8 @@ class InstaApi:
 
 			#checking if directory has files and if yes, deleting all the files before saving new ones
 			dir_path = os.path.dirname(os.path.realpath(__file__))
-			image_predic_folder = dir_path + r'\static\Prediction Images'
+			image_predic_folder = dir_path + r'/static/Prediction Images'
+			logger.info("Directory name:" + str(dir_path))			
 			if os.listdir(image_predic_folder):
 				print("Directory has files")
 				for image_file in os.listdir(image_predic_folder):
@@ -67,13 +68,14 @@ class InstaApi:
 				image_name = InstaApi.save_image(image_url, image_predic_folder)
 				image_urls_list.append(image_name)
 
+
 			print('Saving images complete')
 			return image_urls_list
 		except Exception as Ex: 
 			logger.error("Exception Occurred in:" + METHOD_NAME + "|Exception:" + str(Ex))
 
 	def insta_getlikedmedia():
-		METHOD_NAME = "insta_getrecentmedia"
+		METHOD_NAME = "insta_getlikedmedia"
 		try:
 			access_token = config_json['InstagramApi']['AccessToken']
 			logger.debug('Inside: ' + METHOD_NAME)
@@ -85,7 +87,7 @@ class InstaApi:
 
 
 	def insta_getcall(str_url, a = '', b = '', c = '', d = '', e = '', f = '', g = '', h = '', i = '', j = ''):
-		METHOD_NAME = "insta_getrecentmedia"
+		METHOD_NAME = "insta_getcall"
 		try:
 			logger.debug('Inside ' + METHOD_NAME)
 			str_url = str_url.replace("{0}",a)

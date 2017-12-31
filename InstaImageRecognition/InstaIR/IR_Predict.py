@@ -223,7 +223,7 @@ def predict_image_main(image_name):
   # test_text = open(os.path.join(os.path.dirname(__file__), r'\new\test.txt'),'r')
   import os 
   dir_path = os.path.dirname(os.path.realpath(__file__))
-  image_dir_path = dir_path + r'\static\Prediction Images'
+  image_dir_path = dir_path + r'/static/Prediction Images'
   predict_list = []
   for filename in os.listdir(image_dir_path):
     # if filename.endswith(".jpg") or filename.endswith(".png"): 
