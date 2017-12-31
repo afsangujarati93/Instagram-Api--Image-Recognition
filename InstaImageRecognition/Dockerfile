@@ -4,7 +4,8 @@
 #FROM continuumio/anaconda3
 FROM continuumio/miniconda3
 #FROM condatest/linux-64-python-3.6
-# dependencies into the virtualenv.
+
+
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
