@@ -75,8 +75,9 @@
 	   	element.appendChild(col_a_tag);
 
 		var col_img_tag = document.createElement("img");
-		{% load static %}
-	   	col_img_tag.setAttribute("src", "{% get_static_prefix %}" + "Prediction Images/" + image_name)
+		// {% load static %}
+	 //   	col_img_tag.setAttribute("src", "{% get_static_prefix %}" + "Prediction Images/" + image_name)
+	 	col_img_tag.setAttribute("src", "/InstaIR/media/Prediction Images/" + image_name)
 	   	col_img_tag.setAttribute("id", "col_img_tag_"+i)	   	
 	   	col_img_tag.setAttribute("style", "max-height:220px")
 	   	var element = document.getElementById("col_a_tag_"+i);

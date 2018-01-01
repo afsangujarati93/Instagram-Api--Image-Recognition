@@ -52,7 +52,8 @@ class InstaApi:
 
 			#checking if directory has files and if yes, deleting all the files before saving new ones
 			dir_path = os.path.dirname(os.path.realpath(__file__))
-			image_predic_folder = dir_path + r'/static/Prediction Images'
+			# image_predic_folder = dir_path + r'/static/Prediction Images'
+			image_predic_folder = dir_path + r'/media/Prediction Images'
 			logger.info("Directory name:" + str(dir_path))			
 			if os.listdir(image_predic_folder):
 				print("Directory has files")

@@ -24,4 +24,8 @@ urlpatterns = [
     url(r'^your-user-name/', include('InstaIR.urls')),
     url(r'^your-user-name/object_recognition', include('InstaIR.urls')),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
+
+
+
+

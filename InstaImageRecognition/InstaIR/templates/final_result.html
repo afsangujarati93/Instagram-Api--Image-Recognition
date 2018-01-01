@@ -25,8 +25,10 @@
 			</div>
 			<div class="col-md-4">
 				<div class="thumbnail">	
-					{% load static %}			
-					<img src="{% get_static_prefix %}Prediction Images/{{image_name}}" alt="Insta Photo" style="width:100%">
+					<!-- {% load static %}			
+					<img src="{% get_static_prefix %}Prediction Images/{{image_name}}" alt="Insta Photo" style="width:100%"> -->
+
+					<img src="/InstaIR/media/Prediction Images/{{image_name}}" alt="Insta Photo" style="width:100%">
 					<div class="caption">
 						<table class = "table" id="object_details_table">
 							<thead>
