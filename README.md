@@ -10,8 +10,10 @@ The project was build using Django 2.0 and deployed with the help of docker.
 
 The project expects a config.json file and directories static and media/Prediction Images in Instagram-Api-Image-Recognition/InstaImageRecognition/InstaIR/ which were not pushed on git. 
 The config format is 
+```json
 {
 	"InstagramApi":{
 		"AccessToken":""
 	}
 }
+```
