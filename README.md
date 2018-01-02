@@ -8,3 +8,10 @@ The website is hosted using digitalocean on (http://104.131.45.126:8000) using a
 
 The project was build using Django 2.0 and deployed with the help of docker. 
 
+The project expects a config.json file and directories static and media/Prediction Images in Instagram-Api-Image-Recognition/InstaImageRecognition/InstaIR/ which were not pushed on git. 
+The config format is 
+{
+	"InstagramApi":{
+		"AccessToken":""
+	}
+}
